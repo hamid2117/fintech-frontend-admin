@@ -8,7 +8,7 @@ const AdminRoute = ({ children, ...rest }) => {
     <Route
       {...rest}
       render={() => {
-        return userdata.isAdmin == true ? children : <Redirect to='/' />
+        return userdata.type == 'admin' ? children : <Redirect to='/' />
       }}
     ></Route>
   )
