@@ -144,7 +144,8 @@ const UserList = () => {
             placeItems: 'center',
           }}
         >
-          <CircularProgress color='primary' />
+          {/* <CircularProgress color='primary' /> */}
+          <div className='lds-hourglass'></div>
         </div>
       ) : (
         <DataGrid

@@ -88,14 +88,14 @@ export const incidentData = [
   },
 ]
 
-export const feedbackData = [
+export const cashData = [
   {
     _id: '1212121',
-    createdAt: '12-12-2021',
-    user: {
-      firstName: 'Hamza',
-      lastName: 'Ali',
-    },
+    codee: 223,
+    label: 'apple12314', //alphanumeric characters orange12314
+    status: false,
+    currency: 'EUR',
+    state: false,
     createdAt: '12-6-2021',
     updatedAt: '12-6-2021',
   },

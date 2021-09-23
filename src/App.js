@@ -2,19 +2,7 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { ToastContainer, toast } from 'react-toastify'
 
-import {
-  Account,
-  Error,
-  UserEdit,
-  Userlist,
-  Incidentlist,
-  IncidentEdit,
-  Feedbacklist,
-  FeedbackEdit,
-  Unverifeid,
-  Preview,
-  Dashboard,
-} from './pages'
+import { Account, Error, UserEdit, Userlist, Dashboard, Cash } from './pages'
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'
 import AdminRoute from './utils/AdminRoute'
 import 'react-toastify/dist/ReactToastify.css'
@@ -58,6 +46,9 @@ const App = () => {
             </Route>
             <AdminRoute exact path='/userlist'>
               <Userlist />
+            </AdminRoute>
+            <AdminRoute exact path='/cashlist'>
+              <Cash />
             </AdminRoute>
             <AdminRoute exact path='/useredit/:id'>
               <UserEdit />

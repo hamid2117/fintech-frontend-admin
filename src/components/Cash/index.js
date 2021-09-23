@@ -3,8 +3,8 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Button } from '@material-ui/core'
 import AddIcon from '@material-ui/icons/Add'
 import { useGlobalUiContext } from '../../context/uiContext'
-import NewIncident from '../incident/NewIncident'
-import Incident from './List'
+import NewCash from './newCash'
+import Userlist from './Cashlist'
 
 const useStyles = makeStyles((theme) => ({
   main: {},
@@ -18,16 +18,16 @@ const useStyles = makeStyles((theme) => ({
     gridTemplateColumns: '1fr 1fr',
     justifyContent: 'start',
     '& h2': {
-      color: '#2FD3CA',
+      color: '#39a9fd',
     },
   },
   btn: {
     fontSize: '12px',
     color: 'white',
-    backgroundColor: '#2FD3CA',
+    backgroundColor: '#39a9fd',
     '&:hover': {
-      backgroundColor: '#d5f6f4',
-      color: '#135451',
+      backgroundColor: '#ceeafe',
+      color: '#021e32',
     },
   },
   btndiv: {
@@ -36,29 +36,28 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const IncidentList = () => {
+const App = () => {
   const classes = useStyles()
-  const { adminOpenCourse } = useGlobalUiContext()
+  const { adminOpenCash } = useGlobalUiContext()
   return (
     <section className={classes.main2}>
       <main className={classes.main}>
         <div className={classes.heading}>
-          <h2>Incident Panel</h2>
+          <h2>CashRegistration Panel</h2>
           <div className={classes.btndiv}>
             <Button
               startIcon={<AddIcon />}
-              onClick={adminOpenCourse}
+              onClick={adminOpenCash}
               className={classes.btn}
             >
-              Add new incident
+              Add cash registration
             </Button>
           </div>
-          <NewIncident />
+          <NewCash />
         </div>
-        <Incident />
+        <Userlist />
       </main>
     </section>
   )
 }
-export default IncidentList
-//
+export default App

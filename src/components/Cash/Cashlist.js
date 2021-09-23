@@ -1,28 +1,25 @@
 import React, { useState, useEffect } from 'react'
 import { DataGrid } from '@material-ui/data-grid'
-import { incidentData } from '../../DummyData'
+import { cashData } from '../../DummyData'
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline'
 import { useAuthContext } from '../../context/AuthContext'
 import { Link } from 'react-router-dom'
-import { IconButton, CircularProgress } from '@material-ui/core'
+import { IconButton, Button } from '@material-ui/core'
 import axios from 'axios'
 import DeleteModel from '../DeleteModel'
 import { useGlobalUiContext } from '../../context/uiContext'
 import { toast } from 'react-toastify'
-import VisibilityIcon from '@material-ui/icons/Visibility'
-import { useFormik } from 'formik'
-import VerifiedUserIcon from '@material-ui/icons/VerifiedUser'
+import { devApi } from '../../api'
 
 const UserList = () => {
-  const [data, setData] = useState(incidentData)
+  const [data, setData] = useState(cashData)
   const [model, setModel] = useState(false)
   const [deleteData, setDeleteData] = useState(false)
   const [loading, setLoading] = useState(true)
   const [newId, setNewId] = useState('')
-  const { adminCourse } = useGlobalUiContext()
+  const { adminCash } = useGlobalUiContext()
   const { userdata } = useAuthContext()
   const { token } = userdata
-  const [incidentId, setIncidentId] = useState('')
 
   const config = {
     headers: {
@@ -32,11 +29,7 @@ const UserList = () => {
   const getData = async () => {
     try {
       setLoading(true)
-      const { data } = await axios.get(
-        'https://guardaround.herokuapp.com/api/v1/unverifiedincidents',
-        config
-      )
-
+      const { data } = await axios.get(`${devApi}cash`, config)
       if (data) {
         setLoading(false)
         setData(data)
@@ -48,50 +41,25 @@ const UserList = () => {
     }
   }
   useEffect(() => {
-    getData()
-  }, [])
-  const onSubmit = async (value) => {
-    const { ...data } = value
-
-    try {
-      const { data: dataa } = await axios.put(
-        `https://guardaround.herokuapp.com/api/v1/editincident/${incidentId}`,
-        data,
-        config
-      )
-      if (dataa) {
-        formik.resetForm()
-        getData()
-        toast.success('Incident is verified .')
-      }
-    } catch (error) {
-      console.log(error)
+    if (!adminCash) {
+      getData()
     }
-  }
-
-  const formik = useFormik({
-    initialValues: {
-      status: 'verified',
-    },
-    onSubmit,
-  })
+  }, [adminCash])
 
   const handleDelete = async (id) => {
     try {
       setLoading(true)
-      const response = await axios.delete(
-        `https://guardaround.herokuapp.com/api/v1/incident/${id}`,
-        config
-      )
+      const response = await axios.delete(`${devApi}cash/${id}`, config)
       if (response) {
         getData()
         setDeleteData(false)
-        toast.error('Incident is deleted.')
+        toast.error('CashRegister is deleted.')
       }
     } catch (error) {
       console.log(error)
     }
   }
+
   const closeModel = () => {
     setModel(false)
   }
@@ -105,31 +73,38 @@ const UserList = () => {
   }
 
   useEffect(() => {
-    if (!adminCourse) {
-      getData()
-    }
-  }, [adminCourse])
-
-  useEffect(() => {
-    getData()
-  }, [])
-
-  useEffect(() => {
     if (deleteData) {
       handleDelete(newId)
     }
   }, [deleteData])
 
   const columns = [
-    { field: '_id', headerName: 'ID', width: 140 },
-    { field: 'type', headerName: 'Type', width: 190 },
-    { field: 'title', headerName: 'Title', width: 205 },
-    { field: 'description', headerName: 'Description', width: 210 },
-
+    { field: '_id', headerName: 'ID', width: 100 },
+    { field: 'codee', headerName: 'Code', width: 130 },
+    {
+      field: 'label',
+      headerName: 'Label',
+      width: 140,
+    },
+    {
+      field: 'status',
+      headerName: 'Status',
+      width: 140,
+    },
+    {
+      field: 'state',
+      headerName: 'State',
+      width: 140,
+    },
+    {
+      field: 'currency',
+      headerName: 'Currency',
+      width: 140,
+    },
     {
       field: 'createdAt',
       headerName: 'CreatedAt',
-      width: 180,
+      width: 170,
       renderCell: (params) => {
         return (
           <div className='userList'>
@@ -141,30 +116,15 @@ const UserList = () => {
     {
       field: 'action',
       headerName: 'Action',
-      width: 220,
+      width: 150,
       renderCell: (params) => {
         return (
           <>
-            <IconButton
-              component={Link}
-              to={`/incidentpreview/${params.row._id}`}
-            >
-              <VisibilityIcon />
-            </IconButton>
-            <form onSubmit={formik.handleSubmit}>
-              <IconButton
-                variant='outlined'
-                onClick={() => setIncidentId(params.row._id)}
-                color='primary'
-                type='submit'
-              >
-                <VerifiedUserIcon />
-              </IconButton>
-            </form>
-
+            <Button component={Link} to={`/cashedit/${params.row._id}`}>
+              Edit
+            </Button>
             <IconButton
               className='userListDelete'
-              style={{ marginLeft: '10px' }}
               onClick={() => {
                 handleDeleteBtn(params.row._id)
               }}
@@ -188,7 +148,7 @@ const UserList = () => {
             placeItems: 'center',
           }}
         >
-          <CircularProgress color='primary' />
+          <div className='lds-hourglass'></div>
         </div>
       ) : (
         <DataGrid
