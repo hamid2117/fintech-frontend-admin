@@ -15,6 +15,11 @@ const useStyles = makeStyles((theme) => ({
     height: '250px',
     position: 'sticky',
     top: '15px',
+    zIndex: '100',
+    '@media (max-width: 500px)': {
+      height: '50px',
+      gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr',
+    },
   },
   btn: {
     height: '50px',

@@ -33,6 +33,9 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '10px',
     padding: '15px 15px',
     width: '400px',
+    '@media (max-width: 500px)': {
+      padding: '25px 25px',
+    },
   },
   head: {
     display: 'grid',

@@ -39,6 +39,9 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '10px',
     padding: '15px 15px',
     width: '400px',
+    '@media (max-width: 500px)': {
+      padding: '50px 30px',
+    },
   },
   head: {
     display: 'grid',
@@ -49,6 +52,7 @@ const useStyles = makeStyles((theme) => ({
     padding: '18px 0px',
     display: 'grid',
     gap: '15px 0px',
+    '@media (max-width: 500px)': {},
   },
   sign: {
     backgroundColor: '#5f83ef',
@@ -155,7 +159,7 @@ export default function NewUser() {
                     autoComplete='secondName'
                   />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={6}>
                   <TextField
                     id='city'
                     name='city'
@@ -169,7 +173,7 @@ export default function NewUser() {
                     autoComplete='city'
                   />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={6}>
                   <TextField
                     id='email'
                     name='email'
@@ -183,7 +187,7 @@ export default function NewUser() {
                     autoComplete='email'
                   />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={6}>
                   <InputLabel id='select-filled-label'>Gender</InputLabel>
                   <Select
                     labelId='select-filled-label'
@@ -198,7 +202,7 @@ export default function NewUser() {
                     <MenuItem value={'Other'}>Other</MenuItem>
                   </Select>
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={6}>
                   <TextField
                     id='number'
                     name='number'
@@ -212,7 +216,7 @@ export default function NewUser() {
                     autoComplete='number'
                   />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={6}>
                   <TextField
                     id='pin'
                     name='pin'
@@ -227,7 +231,7 @@ export default function NewUser() {
                     autoComplete='pin'
                   />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={6}>
                   <MuiPickersUtilsProvider utils={DateFnsUtils}>
                     <KeyboardDatePicker
                       margin='normal'

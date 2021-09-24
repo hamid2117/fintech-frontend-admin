@@ -19,6 +19,10 @@ const useStyles = makeStyles((theme) => ({
     '& h2': {
       color: '#39a9fd',
     },
+    '@media (max-width: 500px)': {
+      gridTemplateColumns: '1fr',
+      marginBottom: '30px',
+    },
   },
   btn: {
     fontSize: '12px',

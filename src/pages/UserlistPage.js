@@ -8,10 +8,11 @@ const useStyles = makeStyles((theme) => ({
   main: {
     width: '100%',
     margin: '0px auto',
-
     display: 'grid',
     gridTemplateColumns: '80px auto',
-    '@media (max-width: 500px)': {},
+    '@media (max-width: 500px)': {
+      gridTemplateColumns: '1fr',
+    },
   },
   main2: {
     width: '100%',
@@ -28,7 +29,6 @@ const InvoicePage = () => {
         <title>Fintech | Userlist</title>
       </Helmet>
       <Navbar />
-
       <section className={classes.main}>
         <Sidebar />
         <div className={classes.main2}>

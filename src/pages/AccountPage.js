@@ -7,7 +7,9 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     maxWidth: '1200px',
     margin: '0px auto',
-    '@media (max-width: 500px)': {},
+    '@media (max-width: 500px)': {
+      gridTemplateColumns: '1fr',
+    },
   },
 }))
 const AccountPage = () => {

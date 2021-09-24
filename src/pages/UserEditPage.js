@@ -11,7 +11,9 @@ const useStyles = makeStyles((theme) => ({
     display: 'grid',
     margin: '0px auto',
     gridTemplateColumns: '80px auto',
-    '@media (max-width: 500px)': {},
+    '@media (max-width: 500px)': {
+      gridTemplateColumns: '1fr',
+    },
   },
 }))
 const InvoicePage = () => {

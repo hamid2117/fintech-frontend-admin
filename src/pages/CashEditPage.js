@@ -13,7 +13,9 @@ const useStyles = makeStyles((theme) => ({
     margin: '0px auto',
     display: 'grid',
     gridTemplateColumns: '80px auto',
-    '@media (max-width: 500px)': {},
+    '@media (max-width: 500px)': {
+      gridTemplateColumns: '1fr',
+    },
   },
   main2: {
     width: '100%',
