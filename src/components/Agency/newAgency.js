@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NewUser() {
   const classes = useStyles()
-  const { adminCash, adminCloseCash } = useGlobalUiContext()
+  const { adminAgency, adminCloseAgency } = useGlobalUiContext()
   const [phoneError, setPhoneerror] = useState(false)
   const [agency, setAgency] = useState([])
   const { userdata } = useAuthContext()
@@ -69,7 +69,7 @@ export default function NewUser() {
   const onSubmit = async (value) => {
     const data = { ...value }
     const response = await axios
-      .post(`${devApi}cash`, data, config)
+      .post(`${devApi}agency`, data, config)
       .catch((e) => {
         if (e && e.response) {
           if (e.response.status === 400) {
@@ -78,7 +78,7 @@ export default function NewUser() {
         }
       })
     if (response && response.data) {
-      adminCloseCash()
+      adminCloseAgency()
       toast.success('cashRegistration is Created.')
       formik.resetForm()
     }
@@ -92,10 +92,6 @@ export default function NewUser() {
     initialValues: {
       codee: '',
       label: '',
-      status: '',
-      currency: '',
-      state: '',
-      agency: '',
     },
     onSubmit,
   })
@@ -106,20 +102,20 @@ export default function NewUser() {
         aria-labelledby='transition-modal-title'
         aria-describedby='transition-modal-description'
         className={classes.modal}
-        open={adminCash}
-        onClose={adminCloseCash}
+        open={adminAgency}
+        onClose={adminCloseAgency}
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
           timeout: 500,
         }}
       >
-        <Fade in={adminCash}>
+        <Fade in={adminAgency}>
           <div className={classes.paper}>
             <div className={classes.head}>
               <h3> Cash Register</h3>
               <div style={{ justifySelf: 'end' }}>
-                <IconButton onClick={() => adminCloseCash()}>
+                <IconButton onClick={() => adminCloseAgency()}>
                   <CloseIcon />
                 </IconButton>
               </div>
@@ -155,70 +151,9 @@ export default function NewUser() {
                     autoComplete='label'
                   />
                 </Grid>
-                <Grid item xs={12}>
-                  <InputLabel id='select-filled-label'>Status</InputLabel>
-                  <Select
-                    labelId='select-filled-label'
-                    fullWidth
-                    id='status'
-                    name='status'
-                    value={formik.values.status}
-                    onChange={formik.handleChange}
-                  >
-                    <MenuItem value={false}>Disabled</MenuItem>
-                    <MenuItem value={true}>Enable</MenuItem>
-                  </Select>
-                </Grid>
-                <Grid item xs={12}>
-                  <InputLabel id='select-filled-label'>State</InputLabel>
-                  <Select
-                    labelId='select-filled-label'
-                    fullWidth
-                    id='state'
-                    name='state'
-                    value={formik.values.state}
-                    onChange={formik.handleChange}
-                  >
-                    <MenuItem value={false}>Close</MenuItem>
-                    <MenuItem value={true}>Open</MenuItem>
-                  </Select>
-                </Grid>
-                <Grid item xs={12}>
-                  <InputLabel id='select-filled-label'>Currency</InputLabel>
-                  <Select
-                    labelId='select-filled-label'
-                    fullWidth
-                    id='currency'
-                    name='currency'
-                    value={formik.values.currency}
-                    onChange={formik.handleChange}
-                  >
-                    <MenuItem value={'EUR'}>EUR</MenuItem>
-                    <MenuItem value={'XOF'}>XOF</MenuItem>
-                  </Select>
-                </Grid>
-                <Grid item xs={12}>
-                  <InputLabel id='select-filled-label'>Agency</InputLabel>
-                  <Select
-                    labelId='select-filled-label'
-                    fullWidth
-                    id='agency'
-                    name='agency'
-                    value={formik.values.agency}
-                    onChange={formik.handleChange}
-                  >
-                    {agency.map((data, index) => {
-                      return (
-                        <MenuItem value={data._id} key={index}>
-                          {data.codee}
-                        </MenuItem>
-                      )
-                    })}
-                  </Select>
-                </Grid>
               </Grid>
               <Button className={classes.sign} type='submit'>
-                add Cash Registeration
+                add Agency
               </Button>
             </form>
           </div>

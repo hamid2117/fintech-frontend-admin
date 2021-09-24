@@ -6,6 +6,9 @@ export const UiProvider = ({ children }) => {
   const { userdata } = useAuthContext()
   const [adminRegister, setAdminRegister] = useState(false)
   const [adminCash, setadminCash] = useState(false)
+  const [adminCashBook, setadminCashBook] = useState(false)
+  const [adminAgency, setAdminAgency] = useState(false)
+  const [adminProduct, setAdminProduct] = useState(false)
   const adminCloseRegister = () => {
     setAdminRegister(false)
   }
@@ -18,6 +21,24 @@ export const UiProvider = ({ children }) => {
   const adminOpenCash = () => {
     setadminCash(true)
   }
+  const adminCloseCashBook = () => {
+    setadminCashBook(false)
+  }
+  const adminOpenCashBook = () => {
+    setadminCashBook(true)
+  }
+  const adminCloseAgency = () => {
+    setAdminAgency(false)
+  }
+  const adminOpenAgency = () => {
+    setAdminAgency(true)
+  }
+  const adminCloseProduct = () => {
+    setAdminProduct(false)
+  }
+  const adminOpenProduct = () => {
+    setAdminProduct(true)
+  }
 
   return (
     <UiContext.Provider
@@ -25,9 +46,18 @@ export const UiProvider = ({ children }) => {
         adminOpenRegister,
         adminCloseRegister,
         adminRegister,
-        adminCloseCash,
         adminOpenCash,
+        adminCloseCash,
         adminCash,
+        adminOpenAgency,
+        adminCloseAgency,
+        adminAgency,
+        adminOpenCashBook,
+        adminCloseCashBook,
+        adminCashBook,
+        adminOpenProduct,
+        adminCloseProduct,
+        adminProduct,
       }}
     >
       {children}

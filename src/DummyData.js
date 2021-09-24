@@ -3,32 +3,38 @@ import DashboardIcon from '@material-ui/icons/DashboardOutlined'
 import CollectionsBookmarkIcon from '@material-ui/icons/CollectionsBookmark'
 import NotInterestedIcon from '@material-ui/icons/NotInterested'
 import SpeakerNotesIcon from '@material-ui/icons/SpeakerNotes'
-
+import { Money } from '@material-ui/icons'
 export const Sidebar = [
-  // {
-  //   id: 1,
-  //   link: '/dashboard',
-  //   heading: 'Dashboard',
-  //   Icon: DashboardIcon,
-  // },
+  {
+    id: 9,
+    link: '/productlist',
+    heading: 'Product',
+    Icon: DashboardIcon,
+  },
+  {
+    id: 1,
+    link: '/cashlist',
+    heading: 'CashRegration',
+    Icon: Money,
+  },
   {
     id: 2,
     link: '/userlist',
     heading: 'Userlist ',
     Icon: UsersIcon,
   },
-  // {
-  //   id: 3,
-  //   link: '/incidentlist',
-  //   heading: 'Incident',
-  //   Icon: CollectionsBookmarkIcon,
-  // },
-  // {
-  //   id: 4,
-  //   link: '/feedbacklist',
-  //   heading: 'Feedback',
-  //   Icon: SpeakerNotesIcon,
-  // },
+  {
+    id: 3,
+    link: '/agencylist',
+    heading: 'Agency',
+    Icon: CollectionsBookmarkIcon,
+  },
+  {
+    id: 4,
+    link: '/cashbooklist',
+    heading: 'Cashbook',
+    Icon: SpeakerNotesIcon,
+  },
   // {
   //   id: 5,
   //   link: '/unverified',
@@ -98,5 +104,35 @@ export const cashData = [
     state: false,
     createdAt: '12-6-2021',
     updatedAt: '12-6-2021',
+  },
+]
+export const agencyData = [
+  {
+    _id: '1212121',
+    codee: 223,
+    label: 'apple12314', //alphanumeric characters orange12314
+    createdAt: '12-6-2021',
+    updatedAt: '12-6-2021',
+  },
+]
+export const cashBookData = [
+  {
+    _id: '1212121',
+    type: 'client',
+    account: '234d',
+    balance: '2000000',
+    createdAt: '12-6-2021',
+    updatedAt: '12-6-2021',
+  },
+]
+export const productData = [
+  {
+    _id: '1212121',
+    codee: 223,
+    label: 'apple12314',
+    durationEnum: 'Month',
+    statusEnum: 'false',
+    association: 'false',
+    createdAt: '12-6-2021',
   },
 ]

@@ -40,7 +40,12 @@ const NotFound = () => (
         <div
           style={{ margin: '30px 0px', display: 'grid', placeItems: 'center' }}
         >
-          <Button component={Link} to='/' variant='contained' color='secondary'>
+          <Button
+            component={Link}
+            to='/userlist'
+            variant='contained'
+            color='secondary'
+          >
             Go back
           </Button>
         </div>
