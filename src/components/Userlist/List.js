@@ -16,7 +16,7 @@ const UserList = () => {
   const [model, setModel] = useState(false)
   const [deleteData, setDeleteData] = useState(false)
   const [newId, setNewId] = useState('')
-  const { adminRegisterReload } = useGlobalUiContext()
+  const { adminRegisterReload, adminRegister } = useGlobalUiContext()
   const { userdata, loading, userlist, getData, setLoading } = useAuthContext()
   const { token } = userdata
 
@@ -55,6 +55,11 @@ const UserList = () => {
       getData()
     }
   }, [adminRegisterReload])
+  useEffect(() => {
+    if (!adminRegister) {
+      getData()
+    }
+  }, [adminRegister])
 
   useEffect(() => {
     getData()

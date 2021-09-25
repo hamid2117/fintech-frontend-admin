@@ -33,6 +33,7 @@ const UserList = () => {
       if (data) {
         setLoading(false)
         setData(data)
+        console.log(data)
       }
     } catch (error) {
       if (error.response && error.response.status === 401) {

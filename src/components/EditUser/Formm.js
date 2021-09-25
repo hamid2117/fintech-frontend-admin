@@ -219,7 +219,7 @@ const Formm = ({ config, id, setNewData }) => {
           </Grid>
         </Grid>
         <Button variant='outlined' color='primary' type='submit'>
-          Edit
+          Update
         </Button>
       </form>
     </>

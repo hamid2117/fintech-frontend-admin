@@ -138,7 +138,7 @@ const Formm = ({ config, id }) => {
           </Grid>
         </Grid>
         <Button variant='outlined' color='primary' type='submit'>
-          Edit
+          Update
         </Button>
       </form>
     </>

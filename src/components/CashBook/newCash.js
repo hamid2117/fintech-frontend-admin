@@ -20,6 +20,8 @@ import {
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import { devApi } from '../../api'
+import * as yup from 'yup'
+
 const useStyles = makeStyles((theme) => ({
   modal: {
     display: 'flex',
@@ -51,6 +53,13 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }))
+
+const validationSchema = yup.object({
+  account: yup
+    .string()
+    .max(5, 'Only 5 word is required')
+    .required('Password is required'),
+})
 
 export default function NewUser() {
   const classes = useStyles()
@@ -86,13 +95,30 @@ export default function NewUser() {
     const { data } = await axios.get(`${devApi}agency`, config)
     setAgency(data)
   }, [])
+  var currentdate = new Date()
+  var datetime =
+    'Last Sync: ' +
+    currentdate.getDay() +
+    '/' +
+    currentdate.getMonth() +
+    '/' +
+    currentdate.getFullYear() +
+    ' @ ' +
+    currentdate.getHours() +
+    ':' +
+    currentdate.getMinutes() +
+    ':' +
+    currentdate.getSeconds()
 
   const formik = useFormik({
     initialValues: {
       account: '',
       type: 'Client',
+      time: datetime,
     },
     onSubmit,
+    validateOnBlur: true,
+    validationSchema,
   })
 
   return (
@@ -133,6 +159,17 @@ export default function NewUser() {
                     value={formik.values.account}
                     onChange={formik.handleChange}
                     className={classes.lastNamee}
+                    onBlur={formik.handleBlur}
+                    helperText={
+                      formik.touched.account && formik.errors.account
+                        ? formik.errors.account
+                        : null
+                    }
+                    error={
+                      formik.touched.account && formik.errors.account
+                        ? true
+                        : false
+                    }
                     fullWidth
                     autoComplete='account'
                   />

@@ -16,6 +16,7 @@ const UserList = () => {
   const [model, setModel] = useState(false)
   const [deleteData, setDeleteData] = useState(false)
   const [loading, setLoading] = useState(true)
+  const [numberAgency, setNumberAgency] = useState({})
   const [newId, setNewId] = useState('')
   const { adminAgency } = useGlobalUiContext()
   const { userdata } = useAuthContext()
@@ -45,6 +46,14 @@ const UserList = () => {
       getData()
     }
   }, [adminAgency])
+
+  useEffect(async () => {
+    const { data } = await axios.get(`${devApi}cash`, config)
+    const newData = data.map((data) => {
+      return data.agency
+    })
+    setNumberAgency(newData)
+  }, [devApi])
 
   const handleDelete = async (id) => {
     try {
@@ -108,14 +117,16 @@ const UserList = () => {
             <Button component={Link} to={`/agencyedit/${params.row._id}`}>
               Edit
             </Button>
-            <IconButton
-              className='userListDelete'
-              onClick={() => {
-                handleDeleteBtn(params.row._id)
-              }}
-            >
-              <DeleteOutlineIcon />
-            </IconButton>
+            {!numberAgency.find((data) => data === params.row._id) ? (
+              <IconButton
+                className='userListDelete'
+                onClick={() => {
+                  handleDeleteBtn(params.row._id)
+                }}
+              >
+                <DeleteOutlineIcon />
+              </IconButton>
+            ) : null}
           </>
         )
       },

@@ -7,6 +7,7 @@ import { useGlobalUiContext } from '../../context/uiContext'
 import CloseIcon from '@material-ui/icons/Close'
 import { useAuthContext } from '../../context/AuthContext'
 import { useFormik } from 'formik'
+import * as yup from 'yup'
 import {
   IconButton,
   Divider,
@@ -55,6 +56,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
+const validationSchema = yup.object({
+  codee: yup
+    .string()
+    .max(3, 'Only 3 word is required')
+    .required('Password is required'),
+})
+
 export default function NewUser() {
   const classes = useStyles()
   const { adminCash, adminCloseCash } = useGlobalUiContext()
@@ -100,6 +108,8 @@ export default function NewUser() {
       state: '',
       agency: '',
     },
+    validateOnBlur: true,
+    validationSchema,
     onSubmit,
   })
 
@@ -140,6 +150,15 @@ export default function NewUser() {
                     value={formik.values.codee}
                     onChange={formik.handleChange}
                     className={classes.lastNamee}
+                    onBlur={formik.handleBlur}
+                    helperText={
+                      formik.touched.codee && formik.errors.codee
+                        ? formik.errors.codee
+                        : null
+                    }
+                    error={
+                      formik.touched.codee && formik.errors.codee ? true : false
+                    }
                     fullWidth
                     autoComplete='codee'
                   />
