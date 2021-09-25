@@ -94,6 +94,7 @@ export default function NewUser() {
       email: '',
       city: '',
       number: '',
+      type: '',
       gender: '',
       pin: '',
     },
@@ -131,7 +132,7 @@ export default function NewUser() {
             <Divider />
             <form onSubmit={formik.handleSubmit} className={classes.inputs}>
               <Grid container spacing={2}>
-                <Grid item xs={12}>
+                <Grid item xs={6} sm={6}>
                   <TextField
                     id='firstName'
                     name='firstName'
@@ -145,7 +146,7 @@ export default function NewUser() {
                     autoComplete='firstName'
                   />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={6} sm={6}>
                   <TextField
                     id='secondName'
                     name='secondName'
@@ -157,6 +158,20 @@ export default function NewUser() {
                     className={classes.lastNamee}
                     fullWidth
                     autoComplete='secondName'
+                  />
+                </Grid>
+                <Grid item xs={12} sm={12}>
+                  <TextField
+                    id='type'
+                    name='type'
+                    variant='standard'
+                    label='User type'
+                    required
+                    value={formik.values.type}
+                    onChange={formik.handleChange}
+                    className={classes.lastNamee}
+                    fullWidth
+                    autoComplete='type'
                   />
                 </Grid>
                 <Grid item xs={6}>
