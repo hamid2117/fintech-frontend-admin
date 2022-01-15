@@ -45,9 +45,11 @@ export default function SignIn() {
   const [phoneerror, setEmailerror] = useState(false)
   const [redirect, setRedirect] = useState(false)
   const [pinerror, setpinerror] = useState(false)
+  const [loading, setLoading] = useState(false)
   const { loginData } = useAuthContext()
 
   const onSubmit = async (value) => {
+    setLoading(true)
     setpinerror(false)
     setEmailerror(false)
     const { ...data } = value
@@ -66,6 +68,7 @@ export default function SignIn() {
       loginData(response.data)
       formik.resetForm()
       setEmailerror(false)
+      setLoading(false)
       setTimeout(() => {
         setRedirect(true)
       }, 800)
@@ -139,11 +142,10 @@ export default function SignIn() {
               fullWidth
               variant='outlined'
               color='primary'
-              loading={true}
-              disabled={!formik.isValid}
+              disabled={loading}
               className={classes.submit}
             >
-              Sign In
+              {loading ? 'Loading...' : 'Sign In'}
             </Button>
           </form>
         </div>
