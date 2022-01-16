@@ -60,6 +60,9 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: '#3764eb',
     },
   },
+  pin: {
+    marginTop: "4px",
+  }
 }))
 
 export default function NewUser() {
@@ -226,12 +229,13 @@ export default function NewUser() {
                     required
                     value={formik.values.number}
                     onChange={formik.handleChange}
-                    className={classes.lastNamee}
                     fullWidth
                     autoComplete='number'
                   />
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={6}
+                    style={{paddingTop:"1.45rem"}}
+                >
                   <TextField
                     id='pin'
                     name='pin'
@@ -241,7 +245,6 @@ export default function NewUser() {
                     required
                     value={formik.values.pin}
                     onChange={formik.handleChange}
-                    className={classes.lastNamee}
                     fullWidth
                     autoComplete='pin'
                   />
