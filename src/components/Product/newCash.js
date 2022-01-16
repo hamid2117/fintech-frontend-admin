@@ -116,7 +116,7 @@ export default function NewUser() {
         <Fade in={adminProduct}>
           <div className={classes.paper}>
             <div className={classes.head}>
-              <h3> CashBook Register</h3>
+              <h3> Product Cash</h3>
               <div style={{ justifySelf: 'end' }}>
                 <IconButton onClick={() => adminCloseProduct()}>
                   <CloseIcon />
